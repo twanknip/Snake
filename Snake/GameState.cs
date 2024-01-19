@@ -26,6 +26,7 @@ namespace Snake
             Grid = new GridValue[rows, cols];
             Dir = Direction.Right;
             AddSnake();
+            AddFood();
         }
 
         private void AddSnake()
@@ -38,6 +39,8 @@ namespace Snake
                 snakePositions.AddFirst(new Position(r, c));
             }
         }
+
+ 
 
         private IEnumerable<Position> EmptyPositions()
         {
@@ -65,6 +68,14 @@ namespace Snake
 
             Position pos = empty[random.Next(empty.Count)] ;
             Grid[pos.Row, pos.Col] = GridValue.Food;
+        }
+
+        public Position HeadPosition()
+        {
+            return snakePositions.First.Value;
+        }
+        public IEnumerable<Position> SnakePosition() { 
+            return snakePositions;
         }
     }
 }
