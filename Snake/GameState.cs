@@ -4,6 +4,7 @@ using System.Linq;
 using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace Snake
 {
@@ -40,7 +41,7 @@ namespace Snake
             }
         }
 
- 
+
 
         private IEnumerable<Position> EmptyPositions()
         {
@@ -66,7 +67,7 @@ namespace Snake
                 return;
             }
 
-            Position pos = empty[random.Next(empty.Count)] ;
+            Position pos = empty[random.Next(empty.Count)];
             Grid[pos.Row, pos.Col] = GridValue.Food;
         }
 
@@ -74,8 +75,50 @@ namespace Snake
         {
             return snakePositions.First.Value;
         }
-        public IEnumerable<Position> SnakePosition() { 
+
+        public Position Tailposition()
+        {
+            return snakePositions.Last.Value;
+        }
+        public IEnumerable<Position> SnakePosition() {
             return snakePositions;
         }
+
+        private void AddHead(Position pos)
+        {
+            snakePositions.AddFirst(pos);
+            Grid[pos.Row, pos.Col] = GridValue.Snake;
+        }
+
+        private void RemoveTail() {
+            Position tail = snakePositions.Last.Value;
+            Grid[tail.Row, tail.Col] = GridValue.Empty;
+            snakePositions.RemoveLast();
+        }
+
+
+        public void ChangeDirection(Direction dir)
+        {
+            Dir = dir;
+        }
+
+        private bool OutsideGrid(Position pos)
+        {
+
+            return pos.Row < 0 || pos.Row >= Rows || pos.Col < 0 || pos.Col >= Cols;
+        }
+
+        private GridValue WillHit(Position newHeadPos)
+        {
+            if (OutsideGrid(newHeadPos))
+            { 
+            
+            }
+
+                return Grid[newHeadPos.Row, newHeadPos.Col];
+
+        }
     }
-}
+
+    }
+
