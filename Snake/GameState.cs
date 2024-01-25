@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Printing;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
@@ -38,6 +39,7 @@ namespace Snake
             {
                 Grid[r, c] = GridValue.Snake;
                 snakePositions.AddFirst(new Position(r, c));
+                StrongNameKeyPair
             }
         }
 
