@@ -39,7 +39,7 @@ namespace Snake
             {
                 Grid[r, c] = GridValue.Snake;
                 snakePositions.AddFirst(new Position(r, c));
-                StrongNameKeyPair
+              
             }
         }
 
